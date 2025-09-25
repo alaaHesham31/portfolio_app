@@ -39,7 +39,7 @@ class ProjectsSection extends StatelessWidget {
           'Cubit',
           'api',
           'Secure Storage',
-          'Paymob Payments'
+          'Payments Integration'
         ],
         'image': 'assets/images/project2.png',
         'link': 'https://github.com/alaaHesham31/souqly_app',
