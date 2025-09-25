@@ -232,16 +232,13 @@ class _BriefingSectionState extends State<BriefingSection>
                     style: AppTextStyles.bodyGrey(context).copyWith(height: 1.5),
                   ),
                   const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      ...List.generate(
-                        ( _caseFiles[index]['chips'] as List<String>).length,
-                            (j) => Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: _buildMiniChip(_caseFiles[index]['chips'][j]),
-                        ),
-                      ),
-                    ],
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 6,
+                    children: List.generate(
+                      (_caseFiles[index]['chips'] as List<String>).length,
+                          (j) => _buildMiniChip(_caseFiles[index]['chips'][j]),
+                    ),
                   ),
 
                 ],
