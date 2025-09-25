@@ -32,7 +32,7 @@ class ProjectsSection extends StatelessWidget {
         'title': 'Souqly - E-commerce App',
         'description':
             'Developed a full shopping experience with secure authentication, product browsing, cart, wishlist, and checkout. '
-                'Integrated Paymob for localized payments and applied Clean Architecture + Cubit to ensure maintainable, '
+                'Integrated payments and applied Clean Architecture + Cubit to ensure maintainable, '
                 'testable flows. Optimized for smooth performance and responsive design ',
         'tech': [
           'Clean Architecture',
