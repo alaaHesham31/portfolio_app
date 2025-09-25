@@ -1,7 +1,5 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../core/styels/app_colors.dart';
 import '../core/styels/app_text_styles.dart';
 
@@ -14,7 +12,6 @@ class ExperienceSection extends StatefulWidget {
 
 class _ExperienceSectionState extends State<ExperienceSection> {
   final PageController _pageController = PageController();
-
   final experiences = [
     {
       "company": "Inventory Intel – Capstone Project",
@@ -28,7 +25,7 @@ class _ExperienceSectionState extends State<ExperienceSection> {
       "role": "Flutter Developer",
       "date": "2024 – present",
       "description":
-      "Equipped with the skills to handle freelance or client projects — from authentication and REST APIs to payments and deployment — with a focus on clear requirements, collaboration, and polished delivery."
+      "Equipped to handle freelance or client projects — from authentication and APIs to payments and deployment — with focus on requirements, collaboration, and polished delivery."
     },
     {
       "company": "Freelance",
@@ -39,55 +36,14 @@ class _ExperienceSectionState extends State<ExperienceSection> {
     },
   ];
 
-  double _estimateCardHeight(String description, BuildContext context, bool isMobile,   bool isTablet,
-      ) {
-    // read font sizes from  responsive AppTextStyles
-    final double bodyFs = AppTextStyles.bodyGrey(context).fontSize ?? (isMobile ? 14 : 16);
-    final double roleFs = AppTextStyles.navButtonGreen(context).fontSize ?? (isMobile ? 16 : 18);
-    final double captionFs = AppTextStyles.captionWhite(context).fontSize ?? (isMobile ? 12 : 14);
-
-    // rough characters per line depending on layout
-    final int charsPerLine = isMobile ? 36 :  (isTablet ? 60 : 80);
-    final int lines = max(1, (description.length / charsPerLine).ceil());
-
-    // line height approx (use same multiplier as your styles when you use .copyWith(height: x) )
-    final double lineHeight = bodyFs * 1.6;
-
-    // heuristics for header/footer sizes and paddings
-    final double headerHeight = roleFs + 8; // role + spacing
-    final double footerHeight = captionFs * 2 + 12; // company + date + spacing
-    final double verticalPadding = 20.0 * 2; // container padding top + bottom
-
-    // sum up
-    final double estimated = verticalPadding + headerHeight + (lines * lineHeight) + footerHeight + 8.0; // + small buffer
-
-    return estimated;
-  }
-
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final isMobile = width < 800;
-    final isTablet = width >= 800 && width < 1200;
-
-    // compute dynamic heights for all items and pick the max to avoid jumping heights
-    final List<double> heights = experiences
-        .map((e) => _estimateCardHeight(
-      e['description'] as String,
-      context,
-      isMobile,
-      isTablet,
-    ))
-        .toList();
-
-    // sensible clamps so we don't get tiny or huge boxes
-    final double minH = isMobile ? 220 : (isTablet ? 260 : 180);
-    final double maxH = isMobile ? 520 : (isTablet ? 420 : 320);
-
-    double pageViewHeight = heights.reduce(max).clamp(minH, maxH);
-
+    final isMobile = MediaQuery.of(context).size.width < 800;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: isMobile ? 20 : 100, vertical: 100),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 20 : 100,
+        vertical: 100,
+      ),
       color: AppColors.primaryColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,18 +53,20 @@ class _ExperienceSectionState extends State<ExperienceSection> {
             children: [
               Text("02. ", style: AppTextStyles.titleSmall(context)),
               const SizedBox(width: 10),
-              Text("Where I've Worked", style: AppTextStyles.titleMedium(context)),
+              Text("Where I've Worked",
+                  style: AppTextStyles.titleMedium(context)),
               const SizedBox(width: 20),
               Expanded(
-                child: Container(height: 1, color: AppColors.whiteColor.withOpacity(0.3)),
+                child: Container(
+                  height: 1,
+                  color: AppColors.whiteColor.withOpacity(0.3),
+                ),
               ),
             ],
           ),
           const SizedBox(height: 60),
-
-          // --- PageView with explicit, computed height ---
           SizedBox(
-            height: pageViewHeight,
+            height: isMobile ? 260 : 200,
             child: PageView.builder(
               controller: _pageController,
               itemCount: experiences.length,
@@ -122,16 +80,12 @@ class _ExperienceSectionState extends State<ExperienceSection> {
                     role: exp["role"]!,
                     date: exp["date"]!,
                     description: exp["description"]!,
-                    isMobile: isMobile,
                   ),
                 );
               },
             ),
           ),
-
           const SizedBox(height: 20),
-
-          // --- Dot Indicator ---
           Center(
             child: SmoothPageIndicator(
               controller: _pageController,
@@ -157,29 +111,29 @@ class _ExperienceSectionState extends State<ExperienceSection> {
     required String role,
     required String date,
     required String description,
-    required bool isMobile,
   }) {
-    // Let the card size itself (no forced height), but the PageView surrounding it
-    // imposes a bounded height so the renderers are happy.
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.primaryColor.withOpacity(0.95),
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.25), blurRadius: 16, offset: const Offset(0, 6)),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            blurRadius: 16,
+            offset: const Offset(0, 6),
+          ),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min, // adapt height to content
         children: [
           Text(role, style: AppTextStyles.navButtonGreen(context)),
           const SizedBox(height: 8),
-          Text(description, style: AppTextStyles.bodyGrey(context).copyWith(height: 1.6)),
+          Text(description,
+              style: AppTextStyles.bodyGrey(context).copyWith(height: 1.6)),
           const SizedBox(height: 12),
           Text(company, style: AppTextStyles.captionGreen(context)),
-
           Text(date, style: AppTextStyles.captionWhite(context)),
         ],
       ),
