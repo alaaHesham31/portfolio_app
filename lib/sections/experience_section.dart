@@ -25,7 +25,7 @@ class _ExperienceSectionState extends State<ExperienceSection> {
       "role": "Flutter Developer",
       "date": "2024 – present",
       "description":
-      "Equipped to handle freelance or client projects — from authentication and APIs to payments and deployment — with focus on requirements, collaboration, and polished delivery."
+"Equipped to handle freelance or client projects — from authentication and APIs to payments and deployment — with focus on collaboration and polished delivery."
     },
     {
       "company": "Freelance",

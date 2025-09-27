@@ -46,20 +46,20 @@ class ProjectsSection extends StatelessWidget {
         'imageLeft': false,
       },
       {
-        'title': 'Event Planning App',
-        'description':
-            'The Event Planning App is built to make personal event management effortless. '
-                'Users can create and organize events with precise locations using Google Maps, '
-                'navigate directly to venues, and receive timely reminders through local notifications. '
-        'all wrapped with localization and custom theming for a personalized touch.',
+       'title': 'Event Planning App',
+  'description':
+      'The Event Planning App makes personal event management effortless. '
+      'Users can create and organize events with precise locations using Google Maps, '
+      'store and sync event details in Firebase Firestore, navigate directly to venues, '
+      'and enjoy a personalized experience with localization and custom theming.',
 
-        'tech': [
-          'MVVM',
-          'Firebase Auth,',
-          'Firestore',
-          'Google Maps',
-          'Local Notifications.'
-        ],
+  'tech': [
+    'MVVM',
+    'Firebase Auth',
+    'Firestore',
+    'Google Maps',
+    'Testing (Unit & Widget)',
+  ],
         'image': 'assets/images/project3.png',
         'link': 'https://github.com/alaaHesham31/event-planning-app',
         'imageLeft': true,
@@ -77,7 +77,7 @@ class ProjectsSection extends StatelessWidget {
           'Hive',
           'API Integration',
           'Offline Caching',
-          'Testing',
+          'Testing (Unit & Widget)',
         ],
         'image': 'assets/images/project4.png',
         'link': 'https://github.com/alaaHesham31/islami_app',
